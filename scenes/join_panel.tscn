@@ -1,0 +1,143 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjvi8n0sk6hvq"]
+
+[ext_resource type="StyleBox" uid="uid://dfb0n6ppertsf" path="res://assets/player_tag_panel_dark.tres" id="1_73kdn"]
+[ext_resource type="Script" uid="uid://bqhbxkdvh34an" path="res://scripts/join_panel.gd" id="1_wfsn3"]
+[ext_resource type="Texture2D" uid="uid://dh26jh0l535ay" path="res://assets/buttons/back.png" id="2_tg734"]
+[ext_resource type="StyleBox" uid="uid://db7fljpl8kreg" path="res://assets/player_tag_panel_light.tres" id="2_wfsn3"]
+[ext_resource type="StyleBox" uid="uid://di3xakp5rbrai" path="res://assets/btn_dark_normal.tres" id="4_wog68"]
+[ext_resource type="StyleBox" uid="uid://bh2f0xfru4oe" path="res://assets/btn_light_normal.tres" id="5_6qr87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2e0ks"]
+bg_color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18wmn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73kdn"]
+bg_color = Color(0.109804, 0.117647, 0.133333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37ucc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wog68"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.109804, 0.117647, 0.133333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qr87"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lakip"]
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2e0ks")
+script = ExtResource("1_wfsn3")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_73kdn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/Panel"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="VBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Searching for hosts..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 64)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_18wmn")
+theme_override_styles/panel = ExtResource("2_wfsn3")
+allow_reselect = true
+auto_width = true
+auto_height = true
+text_overrun_behavior = 0
+fixed_icon_size = Vector2i(44, 44)
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(140, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_73kdn")
+placeholder_text = "Enter your name"
+alignment = 1
+max_length = 50
+
+[node name="join" type="Button" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_37ucc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wog68")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6qr87")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wog68")
+text = "Join"
+
+[node name="back_btn" type="Button" parent="."]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 23.0
+offset_right = 76.0
+offset_bottom = 67.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lakip")
+theme_override_styles/hover = ExtResource("4_wog68")
+theme_override_styles/pressed = ExtResource("5_6qr87")
+theme_override_styles/normal = ExtResource("4_wog68")
+icon = ExtResource("2_tg734")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="item_selected" from="VBoxContainer2/Panel/VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/join" to="." method="join"]
+[connection signal="pressed" from="back_btn" to="." method="back"]

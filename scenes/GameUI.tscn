@@ -1,0 +1,226 @@
+[gd_scene load_steps=14 format=3 uid="uid://bj8en0wevixkd"]
+
+[ext_resource type="Script" uid="uid://djcm4jwkse4y0" path="res://scripts/GameUI.gd" id="1_jkspe"]
+[ext_resource type="StyleBox" uid="uid://dfb0n6ppertsf" path="res://assets/player_tag_panel_dark.tres" id="2_1twlr"]
+[ext_resource type="StyleBox" uid="uid://db7fljpl8kreg" path="res://assets/player_tag_panel_light.tres" id="3_7ro0d"]
+[ext_resource type="Texture2D" uid="uid://cre0d3bb57303" path="res://assets/buttons/btn_Default.png" id="4_56cg4"]
+[ext_resource type="Texture2D" uid="uid://ch5cihf5ilwd" path="res://assets/buttons/btn_disabled_filled_88.png" id="5_t4xhs"]
+
+[sub_resource type="Animation" id="Animation_rs3te"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_4s3j0"]
+resource_name = "blink text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_font_sizes/font_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [18, 24, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ro0d"]
+_data = {
+&"RESET": SubResource("Animation_rs3te"),
+&"blink text": SubResource("Animation_4s3j0")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkspe"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.109804, 0.117647, 0.133333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1twlr"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.109804, 0.117647, 0.133333, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc875"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g2w7k"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+texture = ExtResource("4_56cg4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfosg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("5_t4xhs")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jkspe")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -56.5
+offset_right = 132.0
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="BingoGrid" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="multiplayer_sidebar" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/multiplayer_sidebar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="in_game_notification" type="PanelContainer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_1twlr")
+
+[node name="Label" type="Label" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/in_game_notification"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.145098, 0.329412, 1)
+theme_override_font_sizes/font_size = 18
+text = "Not your turn!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/in_game_notification/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_7ro0d")
+}
+
+[node name="turn" type="PanelContainer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jkspe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/turn"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/turn/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lines" type="PanelContainer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1twlr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/lines"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/lines/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Total Lines Formed: "
+
+[node name="value" type="Label" parent="HBoxContainer/multiplayer_sidebar/VBoxContainer/lines/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_7ro0d")
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "BINGO!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_again" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dc875")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_g2w7k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qfosg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g2w7k")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qfosg")
+text = "Play Again"

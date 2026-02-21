@@ -1,0 +1,217 @@
+[gd_scene load_steps=17 format=3 uid="uid://b3bdkjwrqoe6j"]
+
+[ext_resource type="Script" uid="uid://bbvqwn253s2dn" path="res://scripts/leader_board.gd" id="1_ckkce"]
+[ext_resource type="Texture2D" uid="uid://c3751ywak2uoa" path="res://assets/image.png" id="2_mtsy5"]
+[ext_resource type="Texture2D" uid="uid://cre0d3bb57303" path="res://assets/buttons/btn_Default.png" id="3_dq5py"]
+[ext_resource type="Texture2D" uid="uid://dnqvdg7b7gfsb" path="res://assets/buttons/home_default.png" id="3_mtsy5"]
+[ext_resource type="Texture2D" uid="uid://djo65xxu14mgs" path="res://assets/buttons/home_pressed.png" id="4_cqqui"]
+[ext_resource type="Texture2D" uid="uid://ch5cihf5ilwd" path="res://assets/buttons/btn_disabled_filled_88.png" id="4_uwn6i"]
+[ext_resource type="StyleBox" uid="uid://db7fljpl8kreg" path="res://assets/player_tag_panel_light.tres" id="7_uwn6i"]
+[ext_resource type="Theme" uid="uid://c3fhjo8mef4y0" path="res://assets/pop_up_option_theme.tres" id="8_n4oeo"]
+[ext_resource type="StyleBox" uid="uid://di3xakp5rbrai" path="res://assets/btn_dark_normal.tres" id="9_adj3i"]
+[ext_resource type="StyleBox" uid="uid://bh2f0xfru4oe" path="res://assets/btn_light_normal.tres" id="10_j1ah8"]
+
+[sub_resource type="Theme" id="Theme_3ildi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtsy5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n4oeo"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+texture = ExtResource("3_dq5py")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ildi"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_uwn6i")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hc0m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_adj3i"]
+
+[node name="LeaderBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ckkce")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 40.0
+offset_right = 136.0
+offset_bottom = 104.0
+grow_horizontal = 2
+texture = ExtResource("2_mtsy5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.2375
+anchor_right = 0.925
+anchor_bottom = 0.830556
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3ildi")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(954, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -72.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="home" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_mtsy5")
+texture_pressed = ExtResource("4_cqqui")
+texture_hover = ExtResource("3_mtsy5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="spacer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="play_again" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mtsy5")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_n4oeo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3ildi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n4oeo")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3ildi")
+text = " Play Again "
+
+[node name="spacer2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="quit_game" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mtsy5")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_n4oeo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3ildi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n4oeo")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3ildi")
+text = "Quit Game"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("7_uwn6i")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="GridSize" type="OptionButton" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 44)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("8_n4oeo")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6hc0m")
+theme_override_styles/hover = ExtResource("9_adj3i")
+theme_override_styles/pressed = ExtResource("10_j1ah8")
+theme_override_styles/normal = ExtResource("9_adj3i")
+theme_override_constants/modulate_arrow = 1
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "5 x 5"
+popup/item_0/id = 5
+popup/item_1/text = "6 x 6"
+popup/item_1/id = 6
+popup/item_2/text = "7 x 7"
+popup/item_2/id = 7
+popup/item_3/text = "8 x 8"
+popup/item_3/id = 8
+popup/item_4/text = "9 x 9"
+popup/item_4/id = 9
+popup/item_5/text = "10 x 10"
+popup/item_5/id = 10
+
+[node name="play" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_adj3i")
+theme_override_styles/hover = ExtResource("9_adj3i")
+theme_override_styles/pressed = ExtResource("10_j1ah8")
+theme_override_styles/normal = ExtResource("9_adj3i")
+text = "Play"
+
+[connection signal="pressed" from="HBoxContainer/home" to="." method="home"]
+[connection signal="pressed" from="HBoxContainer/play_again" to="." method="play_again"]
+[connection signal="pressed" from="HBoxContainer/quit_game" to="." method="quit_game"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/play" to="." method="play"]

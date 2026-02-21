@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtvutfoh0lqwo"]
+
+[ext_resource type="StyleBox" uid="uid://db7fljpl8kreg" path="res://assets/player_tag_panel_light.tres" id="1_biyeg"]
+[ext_resource type="Script" uid="uid://du13ysn3li6pe" path="res://scripts/host_left.gd" id="2_7rowb"]
+[ext_resource type="Texture2D" uid="uid://cre0d3bb57303" path="res://assets/buttons/btn_Default.png" id="2_8c1av"]
+[ext_resource type="Texture2D" uid="uid://ch5cihf5ilwd" path="res://assets/buttons/btn_disabled_filled_88.png" id="3_bbmjt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc875"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g2w7k"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 20.0
+texture = ExtResource("2_8c1av")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfosg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_bbmjt")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_biyeg")
+script = ExtResource("2_7rowb")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Host Left :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_again" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dc875")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_g2w7k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qfosg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g2w7k")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qfosg")
+text = "Play Again"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/play_again" to="." method="_on_play_again_pressed"]

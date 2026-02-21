@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbvfonmd60f62"]
+
+[ext_resource type="StyleBox" uid="uid://dfb0n6ppertsf" path="res://assets/player_tag_panel_dark.tres" id="1_ohel1"]
+[ext_resource type="Script" uid="uid://igcn8gpo8pih" path="res://scripts/profile_tag.gd" id="1_ukgx8"]
+
+[node name="profile_tag" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_ohel1")
+script = ExtResource("1_ukgx8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="status" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+
+[node name="dp" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+
+[node name="player_name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+vertical_alignment = 1

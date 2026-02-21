@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://pspl24ecbpgd"]
+
+[ext_resource type="Script" uid="uid://la30ww7hg7oo" path="res://scripts/home_page.gd" id="1_2e0ks"]
+[ext_resource type="StyleBox" uid="uid://di3xakp5rbrai" path="res://assets/btn_dark_normal.tres" id="2_0iwd0"]
+[ext_resource type="StyleBox" uid="uid://c2kqdeamr733w" path="res://assets/panel_style.tres" id="2_faivq"]
+[ext_resource type="Theme" uid="uid://c3fhjo8mef4y0" path="res://assets/pop_up_option_theme.tres" id="2_yb10l"]
+[ext_resource type="StyleBox" uid="uid://bh2f0xfru4oe" path="res://assets/btn_light_normal.tres" id="3_emafi"]
+[ext_resource type="Texture2D" uid="uid://dh26jh0l535ay" path="res://assets/buttons/back.png" id="3_faivq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2e0ks"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vobnt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_emafi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0iwd0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2e0ks")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -85.5
+offset_right = 70.0
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(96, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2e0ks")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vobnt")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+text = "Play"
+
+[node name="host" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(96, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2e0ks")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vobnt")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vobnt")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+text = "Join"
+
+[node name="quite" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(96, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2e0ks")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vobnt")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+text = "Quit"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_faivq")
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="GridSize" type="OptionButton" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_yb10l")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_emafi")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+theme_override_constants/modulate_arrow = 1
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "5 x 5"
+popup/item_0/id = 5
+popup/item_1/text = "6 x 6"
+popup/item_1/id = 6
+popup/item_2/text = "7 x 7"
+popup/item_2/id = 7
+popup/item_3/text = "8 x 8"
+popup/item_3/id = 8
+popup/item_4/text = "9 x 9"
+popup/item_4/id = 9
+popup/item_5/text = "10 x 10"
+popup/item_5/id = 10
+
+[node name="play_btn" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 44)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2e0ks")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+text = "Play"
+
+[node name="back_btn" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 0
+offset_left = 32.0
+offset_top = 23.0
+offset_right = 76.0
+offset_bottom = 67.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0iwd0")
+theme_override_styles/hover = ExtResource("2_0iwd0")
+theme_override_styles/pressed = ExtResource("3_emafi")
+theme_override_styles/normal = ExtResource("2_0iwd0")
+icon = ExtResource("3_faivq")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/quite" to="." method="quit"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/play_btn" to="." method="play"]
+[connection signal="pressed" from="Panel/back_btn" to="." method="back"]
