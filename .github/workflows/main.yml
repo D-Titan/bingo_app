@@ -16,6 +16,7 @@ jobs:
         with:
           godot-version: 4.4.1
           working-directory: .
+          export-type: debug
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
