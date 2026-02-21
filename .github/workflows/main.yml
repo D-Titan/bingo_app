@@ -11,15 +11,37 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v4
 
-      - name: Build Android APK
-        uses: dulvui/godot-android-export@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
-          godot-version: 4.4.1
-          working-directory: .
-          export-type: debug
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Upload APK to Artifacts
+      - name: Download and Install Godot
+        run: |
+          wget -q https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
+          wget -q https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
+          
+          # Extract Godot binary
+          unzip -q Godot_v4.4.1-stable_linux.x86_64.zip
+          sudo mv Godot_v4.4.1-stable_linux.x86_64 /usr/local/bin/godot
+          sudo chmod +x /usr/local/bin/godot
+          
+          # Extract and install Templates
+          unzip -q Godot_v4.4.1-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.4.1.stable/
+          mv templates/* ~/.local/share/godot/export_templates/4.4.1.stable/
+
+      - name: Import Assets
+        run: godot --headless --editor --quit || true
+
+      - name: Export Debug APK
+        run: |
+          mkdir -p build
+          godot --headless --export-debug "Android" build/game.apk
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Bingo_App
-          path: ./**/*.apk
+          name: Android-APK
+          path: build/game.apk
