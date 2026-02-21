@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c3fhjo8mef4y0"]
+
+[ext_resource type="StyleBox" uid="uid://di3xakp5rbrai" path="res://assets/btn_dark_normal.tres" id="2_8iaa6"]
+[ext_resource type="StyleBox" uid="uid://ddvvi8wb1iw76" path="res://assets/btn_disabled_normal.tres" id="2_cjxwl"]
+
+[resource]
+default_font_size = 24
+PopupMenu/constants/h_separation = 15
+PopupMenu/constants/v_separation = 5
+PopupMenu/font_sizes/font_separator_size = 24
+PopupMenu/font_sizes/font_size = 24
+PopupMenu/font_sizes/title_font_size = 24
+PopupMenu/styles/hover = ExtResource("2_8iaa6")
+PopupMenu/styles/panel = ExtResource("2_cjxwl")
